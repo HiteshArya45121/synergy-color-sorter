@@ -284,17 +284,28 @@ ul {
 
 .hero {
     position: relative;
-    min-height: 90vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    display: flex;
     align-items: center;
-    gap: 3rem;
-    background: linear-gradient(135deg, #1f3810 0%, #2d5016 50%, #3d6b1f 100%);
+    justify-content: center;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    padding: 6rem 2rem 4rem;
+    padding: 4rem 2rem;
     overflow: hidden;
+}
+
+.hero-wrapper {
+    display: grid;
+    grid-template-columns: 1.3fr 0.9fr;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    z-index: 2;
+    margin-left: 50px;
+    margin-bottom : 200px;
 }
 
 .hero::before {
@@ -304,18 +315,20 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(31, 56, 16, 0.8) 0%, rgba(45, 80, 22, 0.75) 50%, rgba(61, 107, 31, 0.8) 100%);
-    z-index: 0;
+    background: linear-gradient(90deg, rgba(31, 56, 16, 0.4) 0%, rgba(31, 56, 16, 0.2) 50%, rgba(255, 255, 255, 0.02) 100%);
+    z-index: 1;
     pointer-events: none;
 }
 
 .hero-images {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
     gap: 1.5rem;
-    height: 100%;
-    z-index: 2;
+    z-index: 3;
+    height: fit-content;
+    margin-left: 0;
 }
 
 .hero-image {
