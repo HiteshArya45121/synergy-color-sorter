@@ -403,6 +403,56 @@ function initPreloader() {
 // INITIALIZE ALL FUNCTIONS
 // =============================================
 
+function initProductTabs() {
+    const tabs = document.querySelectorAll('.product-tab');
+    const products = document.querySelectorAll('.product-card');
+    
+    if (tabs.length === 0) return;
+    
+    // Click handler for tabs
+    tabs.forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = tab.getAttribute('href').substring(1);
+            const targetProduct = document.getElementById(targetId);
+            
+            if (targetProduct) {
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Smooth scroll to product
+                targetProduct.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // Update active tab on scroll
+    window.addEventListener('scroll', () => {
+        let currentProduct = null;
+        
+        products.forEach(product => {
+            const rect = product.getBoundingClientRect();
+            if (rect.top <= 200) {
+                currentProduct = product;
+            }
+        });
+        
+        if (currentProduct) {
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('href').substring(1) === currentProduct.id) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+// =============================================
+// INITIALIZE ALL FUNCTIONS
+// =============================================
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('SynergyColorSorter website initialized');
     
@@ -418,6 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLazyLoading();
     initCounterAnimation();
     initPreloader();
+    initProductTabs();
     
     // Add loading class removal
     document.body.classList.add('loaded');
